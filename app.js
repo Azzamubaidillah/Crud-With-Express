@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-
+import 'dotenv/config';
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.get('/posts', (req, res) => {
 //connect to DB
 
 mongoose.connect(
-    'mongodb+srv://azzam_ubaidillah:JqDxIhARU2MmIHLf@cluster0.ryan9.mongodb.net/Cluster0?retryWrites=true&w=majority', () => 
+    process.env.DB_CONNECTION, () => 
     console.log('Connected to DB!')
 );
 
