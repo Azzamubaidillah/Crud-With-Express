@@ -2,9 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
-
-
 const app = express();
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
     const user = req.query.user;
@@ -16,13 +16,12 @@ const users = [];
 
 app.post('/create_user', (req, res) => {
     const { user } = req.body;
-
+ 
     users.push({ username: user.username, password: user.password });
     
     console.log(users);
     
     res.json({ loggedIn: true, status: "Everything went well" });
-
 });
 
 //connect to DB
