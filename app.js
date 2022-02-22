@@ -1,8 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import './routes/posts.js';
 
 const app = express();
+
+const postsRoute = router;
+
+app.use('/posts', postsRoute);
 
 // Routes
 app.get('/', (req, res) => {
