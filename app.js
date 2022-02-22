@@ -24,6 +24,10 @@ app.post('/create_user', (req, res) => {
     res.json({ loggedIn: true, status: "Everything went well" });
 });
 
+app.get('/users', (_,res) => {
+    res.json(users);
+});
+
 //connect to DB
 
 mongoose.connect(
