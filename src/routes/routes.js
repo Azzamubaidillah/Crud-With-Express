@@ -1,12 +1,10 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import 'dotenv/config';
 
-const app = express();
+const router = express.Router();
 
-app.use(express.json());
 
-app.get('/', (req, res) => {
+
+router.get('/', (req, res) => {
     const user = req.query.user;
 
     res.send(user + "!!");
@@ -14,7 +12,7 @@ app.get('/', (req, res) => {
 
 const users = [];
 
-app.post('/create_user', (req, res) => {
+router.post('/create_user', (req, res) => {
     const { user } = req.body;
  
     users.push({ username: user.username, password: user.password });
@@ -24,11 +22,11 @@ app.post('/create_user', (req, res) => {
     res.json({ loggedIn: true, status: "Everything went well" });
 });
 
-app.get('/users', (_,res) => {
+router.get('/users', (_,res) => {
     res.json(users);
 });
 
-app.delete('/delete', (req, res) => {
+router.delete('/delete', (req, res) => {
     const { username, password } = req.body;
 
     const existingUser = users.find(
@@ -43,13 +41,6 @@ app.delete('/delete', (req, res) => {
     users.splice(users.indexOf(existingUser), 1);
     res.json(users);
 
-})
+});
 
-//connect to DB
-
-mongoose.connect(
-    process.env.DB_CONNECTION, () => 
-    console.log('Connected to DB!')
-);
-
-app.listen(5000);
+export default router;
