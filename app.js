@@ -12,6 +12,18 @@ app.get('/', (req, res) => {
     res.send(user + "!!");
 });
 
+const users = [];
+
+app.post('/create_user', (req, res) => {
+    const { user } = req.body;
+
+    users.push({ username: user.username, password: user.password });
+    
+    console.log(users);
+    
+    res.json({ loggedIn: true, status: "Everything went well" });
+
+});
 
 //connect to DB
 
