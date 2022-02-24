@@ -1,14 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import 'dotenv/config';
-import './routes/routes.js';
 import router from './routes/routes.js';
 
 const Router = router;
 const app = express();
+const Cors = cors();
 
 app.use(express.json());
-app.use(Router);
+app.use('/api', Router);
 
 //connect to DB
 mongoose.connect(
