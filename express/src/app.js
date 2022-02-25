@@ -6,8 +6,9 @@ import router from './routes/routes.js';
 const Router = router;
 const app = express();
 
-app.use(express.json());
-app.use('/api', Router);
+//middleware
+// app.use(express.json());
+app.use('/books', Router);
 
 //connect to DB
 mongoose.connect(

@@ -24,4 +24,4 @@ const bookSchema = new Schema({
     },
 });
 
-export default ("Book", bookSchema);
+export default mongoose.model("Book", bookSchema);
